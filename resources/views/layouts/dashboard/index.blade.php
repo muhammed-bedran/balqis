@@ -32,6 +32,12 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">تواصل معنا</a>
                 </li>
+                <li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">تسجيل الخروج</button>
+                    </form>
+                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">
@@ -167,7 +173,7 @@
                         <img src="{{asset('dashboard/dist/img/muhammed.png')}}" class="img-circle elevation-2" alt="صورة المستخدم">
                     </div>
                     <div class="info">
-                        <a href="profile.html" class="d-block">محمد البدران</a>
+                        <a href="profile.html" class="d-block"> {{ Auth::user()->name }}</a>
                     </div>
                 </div>
 

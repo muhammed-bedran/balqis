@@ -8,7 +8,8 @@ use App\Http\Controllers\Dashboard\CategoriesController;
 
 Route::group([
     'prefix'=>'/admin/dashboard',
-    'as'=>'dashboard.'
+    'as'=>'dashboard.',
+    'middleware'=>['auth']
 ],function(){
 
     Route::get('/index', [DashboardController::class, 'index'])

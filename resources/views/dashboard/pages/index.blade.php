@@ -6,7 +6,7 @@
         <div class="welcome-content">
             <img src="{{asset('dashboard/dist/img/muhammed.png')}}" alt="محمد البدران" class="welcome-avatar">
             <div class="welcome-text">
-                <h2>مرحباً، محمد البدران 👋</h2>
+                <h2>مرحباً،  {{ Auth::user()->name }} 👋</h2>
                 <p>نتمنى لك يوماً مثمراً — إليك نظرة سريعة على لوحة التحكم الخاصة بك</p>
             </div>
         </div>
