@@ -11,8 +11,21 @@ class CategoriesController extends Controller
     //
     public function index()
     {
-        $categories = Category::all();
-        return view('dashboard.pages.categories.index', compact('categories'));
+        $request = request();
+        $query = Category::query();
+        // $categories = Category::all();
+        $name = $request->query('name');
+        $status = $request->query('status');
+        if($name){
+            $query->where('name','like' , '%' . $name . '%');
+        }
+        if($status)
+            {
+                $query->where('status', $status);
+            }
+        return view('dashboard.pages.categories.index',[
+            'categories'=>$query->get(),
+        ]);
     }
     public function create()
     {
@@ -23,7 +36,8 @@ class CategoriesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'required|string',
+            'status' => 'required|in:active,inactive',
         ]);
 
         // Here you would typically save the category to the database

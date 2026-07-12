@@ -51,6 +51,30 @@
 
     <x-flash-message />
     <!-- الجدول -->
+    <form action="{{ URL::current() }}" method="get" class="row m-2 g-3 align-items-end m-2 mt-3">
+        <div class="col-md-4 ">
+            <input type="text" name="name" class="form-control" value="{{ request()->query('name') }}">
+        </div>
+        <div class="col-md-3">
+            <select name="status" class="form-control">
+                <option value="">All</option>3
+                <option value="active" {{ request()->query('status') === 'active' ? 'selected' : '' }}>Active</option>
+                <option value="inactive" {{ request()->query('status') === 'inactive' ? 'selected' : '' }}>Inactive</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary">
+                search
+                <i class="fas fa-search ml-1"></i>  
+            </button>
+            <button type="reset" class="btn btn-danger" id="resetBtn">
+                reset
+                <i class="fas fa-undo ml-1"></i>  
+            </button>
+          
+        </div>
+
+    </form>
     <div class="card table-card card-primary card-outline">
         <div class="card-header">
             <h3 class="card-title">
@@ -64,6 +88,7 @@
                 {{-- <button type="button" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus ml-1"></i> إضافة فئة جديدة
                 </button> --}}
+
             </div>
         </div>
         <div class="card-body">
@@ -73,8 +98,10 @@
                         <th>#</th>
                         <th>اسم الفئة</th>
                         <th> الوصف</th>
+                        <th>الحالة</th>
                         <th>تاريخ التسجيل</th>
                         <th>الإجراءات</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -83,6 +110,7 @@
                             <td>{{ $category->id }}</td>
                             <td><strong>{{ $category->name }}</strong></td>
                             <td>{{ $category->description }}</td>
+                            <td>{{ $category->status }}</td>
                             <td>{{ $category->created_at }}</td>
                             <td style="justify-content: space-between;display:flex">
                                 {{-- <button class="btn btn-primary btn-action" title="عرض"><i class="fas fa-eye"></i></button> --}}
@@ -144,6 +172,11 @@
                         }
                     }
                 });
+            });
+        </script>
+        <script>
+            document.getElementById('resetBtn').addEventListener('click',function(){
+                window.location.href = '{{ route('dashboard.categories.index') }}';
             });
         </script>
 @endpush
