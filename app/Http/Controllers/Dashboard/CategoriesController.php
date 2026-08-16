@@ -23,14 +23,21 @@ class CategoriesController extends Controller
             {
                 $query->where('status', $status);
             }
+        
         return view('dashboard.pages.categories.index',[
-            'categories'=>$query->get(),
+            'categories' => $query->get(),
         ]);
+        //inertia js
+        //api
+        //all()
+        //get()
     }
     public function create()
     {
-        $category = new Category();
-        return view('dashboard.pages.categories.create', compact('category'));
+      
+        return view('dashboard.pages.categories.create',[
+            'category' => new Category(),
+        ]);
     }
     public function store(Request $request)
     {
