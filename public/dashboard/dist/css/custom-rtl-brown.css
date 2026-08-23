@@ -434,6 +434,19 @@ html[dir="rtl"] .sidebar::-webkit-scrollbar-thumb {
 }
 
 /* ── تنسيق الجداول ── */
+.table-card .card-body {
+  padding: 0;
+}
+
+.table-responsive-custom {
+  overflow-x: auto;
+}
+
+.table-brown {
+  margin-bottom: 0;
+  width: 100%;
+}
+
 .table-brown thead th {
   background: linear-gradient(135deg, rgba(92, 61, 40, 0.92), rgba(139, 94, 60, 0.85));
   color: #fff;
@@ -441,35 +454,146 @@ html[dir="rtl"] .sidebar::-webkit-scrollbar-thumb {
   font-weight: 600;
   white-space: nowrap;
   vertical-align: middle;
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+}
+
+.table-brown thead th:first-child {
+  border-radius: 0;
 }
 
 .table-brown tbody tr {
   transition: background-color 0.2s ease;
 }
 
+.table-brown tbody tr:nth-child(even) {
+  background-color: rgba(139, 94, 60, 0.03);
+}
+
 .table-brown tbody tr:hover {
-  background-color: rgba(139, 94, 60, 0.08) !important;
+  background-color: rgba(139, 94, 60, 0.1) !important;
 }
 
 .table-brown td {
   vertical-align: middle;
   border-color: rgba(139, 94, 60, 0.1);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
 }
 
-.table-brown .badge {
+.table-brown td.text-muted-cell {
+  color: #7a6555;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table-brown .badge-status {
   font-size: 0.78rem;
   padding: 0.4em 0.75em;
   font-weight: 600;
+  border-radius: 20px;
+}
+
+.table-brown .badge-status.active {
+  background-color: rgba(40, 167, 69, 0.15);
+  color: #1e7e34;
+}
+
+.table-brown .badge-status.inactive {
+  background-color: rgba(108, 117, 125, 0.15);
+  color: #545b62;
+}
+
+.table-brown .col-id {
+  width: 60px;
+  font-weight: 600;
+  color: var(--brown-dark);
+}
+
+.table-brown .col-actions {
+  width: 150px;
+  white-space: nowrap;
+}
+
+.table-empty td {
+  text-align: center;
+  padding: 2.5rem 1rem !important;
+  color: #7a6555;
+  font-size: 0.95rem;
+}
+
+.action-btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  flex-wrap: nowrap;
+}
+
+.action-btn-group form {
+  margin: 0;
+  display: inline-flex;
 }
 
 .table-card .card-header {
   background: linear-gradient(135deg, rgba(139, 94, 60, 0.12), rgba(245, 235, 220, 0.5));
   border-bottom: 1px solid rgba(139, 94, 60, 0.15);
+  padding: 0.85rem 1.25rem;
 }
 
 .table-card .card-title {
   color: var(--brown-dark);
   font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.dashboard-pagination {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid rgba(139, 94, 60, 0.1);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.dashboard-pagination .pagination {
+  margin-bottom: 0;
+  justify-content: center;
+}
+
+.dashboard-pagination .page-link {
+  color: var(--brown);
+  border-color: rgba(139, 94, 60, 0.2);
+  border-radius: 8px !important;
+  margin: 0 2px;
+  padding: 0.4rem 0.75rem;
+}
+
+.dashboard-pagination .page-item.active .page-link {
+  background-color: var(--brown);
+  border-color: var(--brown);
+}
+
+.btn-action {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 0.82rem;
+}
+
+.btn-brown {
+  background-color: var(--brown);
+  border-color: var(--brown);
+  color: #fff;
+}
+
+.btn-brown:hover {
+  background-color: var(--brown-dark);
+  border-color: var(--brown-dark);
+  color: #fff;
 }
 
 .stat-box {
@@ -539,15 +663,6 @@ html[dir="rtl"] .dash-stat-icon {
 html[dir="rtl"] .dash-stat-info {
   flex: 1;
   min-width: 0;
-}
-
-.btn-action {
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  line-height: 32px;
-  border-radius: 8px;
-  font-size: 0.8rem;
 }
 
 /* DataTables RTL */

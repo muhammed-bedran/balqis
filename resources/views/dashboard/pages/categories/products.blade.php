@@ -37,74 +37,65 @@
             </div>
         </div>
         <div class="card-body">
-            <table id="usersTable" class="table table-bordered table-striped table-hover table-brown" style="width:100%">
+            <div class="table-responsive table-responsive-custom">
+                <table class="table table-bordered table-striped table-hover table-brown mb-0">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th class="col-id">#</th>
                         <th>اسم المنتج</th>
-                       
                         <th>اسم المتجر</th>
-                        <th> الوصف</th>
+                        <th>الوصف</th>
                         <th>الحالة</th>
                         <th>تاريخ التسجيل</th>
-                        <th>الإجراءات</th>
-
+                        <th class="col-actions">الإجراءات</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($products as $product)
+                    @forelse ($products as $product)
                         <tr>
-                            <td>{{ $product->id }}</td>
+                            <td class="col-id">{{ $product->id }}</td>
                             <td><strong>{{ $product->name }}</strong></td>
-                          
-                            <td>{{ $product->store->name }}</td>
-                            <td>{{ $product->description }}</td>
-                            <td>{{ $product->status }}</td>
-                            <td>{{ $product->created_at }}</td>
-                            <td style="justify-content: space-between;display:flex">
-                                {{-- <button class="btn btn-primary btn-action" title="عرض"><i class="fas fa-eye"></i></button>
-                                --}}
-                                <a href="{{ route('dashboard.products.show', $product->id) }}"
-                                    class="btn btn-primary btn-action" title="عرض"> <i class="fas fa-eye"></i> </a>
-
-                                <a href="{{ route('dashboard.products.edit', $product->id) }}"
-                                    class="btn btn-warning btn-action" title="تعديل"> <i class="fas fa-edit"></i> </a>
-                                {{-- <button class="btn btn-warning btn-action" title="تعديل"><i
-                                        class="fas fa-edit"></i></button> --}}
-                                {{-- <button class="btn btn-danger btn-action" title="حذف"><i class="fas fa-trash"></i></button>
-                                --}}
-                                <form action="{{ route('dashboard.products.destroy', $product->id) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-action" title="حذف"><i
-                                            class="fas fa-trash"></i></button>
-
-                                </form>
+                            <td>{{ $product->store->name ?? '-' }}</td>
+                            <td class="text-muted-cell" title="{{ $product->description }}">{{ $product->description ?? '-' }}</td>
+                            <td>
+                                <span class="badge badge-status {{ $product->status }}">
+                                    {{ $product->status === 'active' ? 'نشط' : 'غير نشط' }}
+                                </span>
+                            </td>
+                            <td>{{ $product->created_at?->format('Y-m-d') }}</td>
+                            <td class="col-actions">
+                                <div class="action-btn-group">
+                                    <a href="{{ route('dashboard.products.show', $product->id) }}" class="btn btn-info btn-action" title="عرض">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('dashboard.products.edit', $product->id) }}" class="btn btn-warning btn-action" title="تعديل">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('dashboard.products.destroy', $product->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-action" title="حذف">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr class="table-empty">
+                            <td colspan="7">لا توجد منتجات في هذه الفئة</td>
+                        </tr>
+                    @endforelse
                 </tbody>
-            </table>
-            {{ $products->links() }}
+                </table>
+            </div>
+            @if ($products->hasPages())
+                <div class="dashboard-pagination">
+                    {{ $products->links() }}
+                </div>
+            @endif
         </div>
     </div>
 
 
 @endsection
-
-
-
-@push('styles')
-    <style>
-
-    </style>
-@endpush
-
-@push('scripts')
-
-    <script>
-        document.getElementById('resetBtn').addEventListener('click', function () {
-            window.location.href = '{{ route('dashboard.products.index') }}';
-        });
-    </script>
-@endpush

@@ -92,45 +92,56 @@
             </div>
         </div>
         <div class="card-body">
-            <table id="usersTable" class="table table-bordered table-striped table-hover table-brown" style="width:100%">
+            <div class="table-responsive table-responsive-custom">
+                <table class="table table-bordered table-striped table-hover table-brown mb-0">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th class="col-id">#</th>
                         <th>اسم المتجر</th>
-                        <th> الوصف</th>
+                        <th>الوصف</th>
                         <th>الحالة</th>
                         <th>تاريخ التسجيل</th>
-                        <th>الإجراءات</th>
-
+                        <th class="col-actions">الإجراءات</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($stores as $store)
+                    @forelse ($stores as $store)
                         <tr>
-                            <td>{{ $store->id }}</td>
+                            <td class="col-id">{{ $store->id }}</td>
                             <td><strong>{{ $store->name }}</strong></td>
-                            <td>{{ $store->description }}</td>
-                            <td>{{ $store->status }}</td>
-                            <td>{{ $store->created_at }}</td>
-                            <td style="justify-content: space-between;display:flex">
-                                {{-- <button class="btn btn-primary btn-action" title="عرض"><i class="fas fa-eye"></i></button> --}}
-                                <a href="{{ route('dashboard.stores.show', $store->id) }}" class="btn btn-primary btn-action" title="عرض"> <i
-                                                                        class="fas fa-eye"></i> </a>
-
-                                <a href="{{ route('dashboard.stores.edit', $store->id) }}" class="btn btn-warning btn-action" title="تعديل">  <i class="fas fa-edit"></i> </a>
-                                {{-- <button class="btn btn-warning btn-action" title="تعديل" ><i class="fas fa-edit"></i></button> --}}
-                                {{-- <button class="btn btn-danger btn-action" title="حذف"><i class="fas fa-trash"></i></button> --}}
-                                <form action="{{ route('dashboard.stores.destroy', $store->id) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger btn-action" title="حذف"><i class="fas fa-trash"></i></button>
-
-                                </form>
+                            <td class="text-muted-cell" title="{{ $store->description }}">{{ $store->description ?? '-' }}</td>
+                            <td>
+                                <span class="badge badge-status {{ $store->status }}">
+                                    {{ $store->status === 'active' ? 'نشط' : 'غير نشط' }}
+                                </span>
+                            </td>
+                            <td>{{ $store->created_at?->format('Y-m-d') }}</td>
+                            <td class="col-actions">
+                                <div class="action-btn-group">
+                                    <a href="{{ route('dashboard.stores.show', $store->id) }}" class="btn btn-info btn-action" title="عرض">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('dashboard.stores.edit', $store->id) }}" class="btn btn-warning btn-action" title="تعديل">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('dashboard.stores.destroy', $store->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-action" title="حذف">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr class="table-empty">
+                            <td colspan="6">لا توجد متاجر</td>
+                        </tr>
+                    @endforelse
                 </tbody>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -146,37 +157,9 @@
 @endpush
 
 @push('scripts')
-
-    <script src="{{asset('dashboard/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{asset('dashboard/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-        <script>
-            $(function () {
-                $('#usersTable').DataTable({
-                    responsive: true,
-                    lengthChange: true,
-                    autoWidth: false,
-                    order: [[0, 'asc']],
-                    language: {
-                        search: 'بحث:',
-                        lengthMenu: 'عرض _MENU_ سجل',
-                        info: 'عرض _START_ إلى _END_ من _TOTAL_ سجل',
-                        infoEmpty: 'لا توجد سجلات',
-                        infoFiltered: '(تمت التصفية من _MAX_ سجل)',
-                        zeroRecords: 'لم يتم العثور على نتائج',
-                        paginate: {
-                            first: 'الأول',
-                            last: 'الأخير',
-                            next: 'التالي',
-                            previous: 'السابق'
-                        }
-                    }
-                });
-            });
-        </script>
-        <script>
-            document.getElementById('resetBtn').addEventListener('click',function(){
-                window.location.href = '{{ route('dashboard.stores.index') }}';
-            });
-        </script>
+    <script>
+        document.getElementById('resetBtn').addEventListener('click', function () {
+            window.location.href = '{{ route('dashboard.stores.index') }}';
+        });
+    </script>
 @endpush
