@@ -71,7 +71,7 @@
                 reset
                 <i class="fas fa-undo ml-1"></i>  
             </button>
-          
+
         </div>
 
     </form>
@@ -98,6 +98,7 @@
                         <th>#</th>
                         <th>اسم الفئة</th>
                         <th> الوصف</th>
+                        <th> عدد المنتجات</th>
                         <th>الحالة</th>
                         <th>تاريخ التسجيل</th>
                         <th>الإجراءات</th>
@@ -110,6 +111,7 @@
                             <td>{{ $category->id }}</td>
                             <td><strong>{{ $category->name }}</strong></td>
                             <td>{{ $category->description }}</td>
+                            <td>{{ $category->products_count }}</td>
                             <td>{{ $category->status }}</td>
                             <td>{{ $category->created_at }}</td>
                             <td style="justify-content: space-between;display:flex">
@@ -118,6 +120,8 @@
                                                                         class="fas fa-eye"></i> </a>
 
                                 <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn btn-warning btn-action" title="تعديل">  <i class="fas fa-edit"></i> </a>
+                               <a href="{{ route('dashboard.categories.products', $category->id) }}" class="btn btn-warning btn-action" title="تعديل"> المنتجات</a>
+
                                 {{-- <button class="btn btn-warning btn-action" title="تعديل" ><i class="fas fa-edit"></i></button> --}}
                                 {{-- <button class="btn btn-danger btn-action" title="حذف"><i class="fas fa-trash"></i></button> --}}
                                 <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post">

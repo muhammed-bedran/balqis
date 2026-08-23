@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\StoreController;
-
+use App\Http\Controllers\Dashboard\ProductsController;
 
 Route::group([
     'prefix' => '/admin/dashboard',
@@ -29,10 +29,11 @@ Route::group([
         ->name('categories.update');
     Route::delete('/categories/delete/{id}', [CategoriesController::class, 'destroy'])
         ->name('categories.destroy');
+    Route::get('/categories/{category}/products', [CategoriesController::class, 'products'])->name('categories.products');
     // Store Controller
     Route::resource('stores', StoreController::class); // dashboard.store.index
 
-
+    Route::resource('products', ProductsController::class); // dashboard.products.index
 });
 
 

@@ -16,6 +16,11 @@ return [
         'title'=>'المتاجر',
         'icon'=>'nav-icon fas fa-store',
         'route'=> 'dashboard.stores.index',
-    ]
+    ],
+    [
+        'title'=>'المنتجات',
+        'icon'=>'nav-icon fas fa-box',
+        'route'=> 'dashboard.products.index',
+    ],
 
 ];
