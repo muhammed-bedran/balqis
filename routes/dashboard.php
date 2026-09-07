@@ -4,6 +4,8 @@ use App\Http\Controllers\Dashboard\TwoFactorAuthenticatableController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\CategoriesController;
+use App\Http\Controllers\Dashboard\HrController;
+use App\Http\Controllers\Dashboard\HrDepartmentsController;
 use App\Http\Controllers\Dashboard\StoreController;
 use App\Http\Controllers\Dashboard\ProductsController;
 
@@ -37,6 +39,18 @@ Route::group([
     Route::resource('products', ProductsController::class); // dashboard.products.index
     Route::get('/2fa',[TwoFactorAuthenticatableController::class,'index'])
     ->name('admin.2fa');
+
+    Route::prefix('hr')->name('hr.')->group(function(){  // admin/dashboard/hr,      admin/dashboard/hr/departments
+         Route::get('/',[HrController::class,'index'])->name('index'); // dashboard.hr.index
+
+            Route::resource('departments',HrDepartmentsController::class); // dashboard.hr.departments.index
+
+
+
+    });
+
+
+
 });
 
 

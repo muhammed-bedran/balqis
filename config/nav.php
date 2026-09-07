@@ -27,5 +27,10 @@ return [
         'icon'=>'nav-icon fas fa-lock',
         'route'=> 'dashboard.admin.2fa',
     ],
+    [
+        'title'=>'الموارد البشرية',
+        'icon'=>'nav-icon fas fa-users',
+        'route'=> 'dashboard.hr.index',
+    ],
 
 ];
