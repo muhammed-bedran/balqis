@@ -1,8 +1,18 @@
+@php
+    $statusLables = [
+        'active' => 'نشط',
+        'on_leave' => 'في إجازة',
+        'terminated' => 'تم إنهاء الخدمة',
+        'inactive' => 'غير نشط',
+    ]
+@endphp
+
+
 @extends('layouts.dashboard.index')
 
-@section('title', 'الموارد البشرية - الأقسام')
+@section('title', 'الموارد البشرية - الموظفين')
 @section('content')
-    @include('dashboard.pages.hr._menu', ['current' => 'departments'])
+    @include('dashboard.pages.hr._menu', ['current' => 'employees'])
         <!-- إحصائيات سريعة -->
         {{-- <div class="row mb-4">
             <div class="col-lg-3 col-md-6 mb-3">
@@ -84,11 +94,11 @@
                     قائمة الأقسام
                 </h3>
                 <div class="card-tools">
-                    <a href="{{ route('dashboard.hr.departments.create') }}" class="btn btn-primary btn-sm">
-                        <i class="fas fa-plus ml-1"></i> إضافة قسم جديد
+                    <a href="{{ route('dashboard.hr.employees.create') }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus ml-1"></i> إضافة موظف جديد
                     </a>
                     {{-- <button type="button" class="btn btn-primary btn-sm">
-                        <i class="fas fa-plus ml-1"></i> إضافة قسم جديد
+                        <i class="fas fa-plus ml-1"></i> إضافة موظف جديد
                     </button> --}}
 
                 </div>
@@ -99,6 +109,7 @@
                     <thead>
                         <tr>
                             <th class="col-id">#</th>
+                            <th>اسم الموظف</th>
                             <th>اسم القسم</th>
                             <th>الوصف</th>
                             <th>الحالة</th>
@@ -107,26 +118,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($departments as $department)
+                        @forelse ($employees as $employee)
                             <tr>
-                                <td class="col-id">{{ $department->id }}</td>
-                                <td><strong>{{ $department->name }}</strong></td>
-                                <td class="text-muted-cell" title="{{ $department->description }}">{{ $department->description ?? '-' }}</td>
-                                <td>
-                                    <span class="badge badge-status {{ $department->status }}">
-                                        {{ $department->status === 'active' ? 'نشط' : 'غير نشط' }}
-                                    </span>
-                                </td>
-                                <td>{{ $department->created_at?->format('Y-m-d') }}</td>
+                                <td class="col-id">{{ $employee->id }}</td>
+                                <td><strong>{{ $employee->name }}</strong></td>
+                                <td>{{ $employee->department?->name ?? '-' }}</td>
+                                <td class="text-muted-cell" title="{{ $employee->description }}">{{ $employee->description ?? '-' }}</td>
+                                <td> {{ $statusLables[$employee->status] ?? $employee->status }}</td>
+                                <td>{{ $employee->created_at?->format('Y-m-d') }}</td>
                                 <td class="col-actions">
                                     <div class="action-btn-group">
-                                        <a href="{{ route('dashboard.hr.departments.show', $department->id) }}" class="btn btn-info btn-action" title="عرض">
+                                        <a href="{{ route('dashboard.hr.employees.show', $employee->id) }}" class="btn btn-info btn-action" title="عرض">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('dashboard.hr.departments.edit', $department->id) }}" class="btn btn-warning btn-action" title="تعديل">
+                                        <a href="{{ route('dashboard.hr.employees.edit', $employee->id) }}" class="btn btn-warning btn-action" title="تعديل">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <form action="{{ route('dashboard.hr.departments.destroy', $department->id) }}" method="post">
+                                        <form action="{{ route('dashboard.hr.employees.destroy', $employee->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-action" title="حذف">
@@ -138,7 +146,7 @@
                             </tr>
                         @empty
                             <tr class="table-empty">
-                                <td colspan="6">لا توجد أقسام</td>
+                                <td colspan="6">لا توجد موظفين</td>
                             </tr>
                         @endforelse
                     </tbody>

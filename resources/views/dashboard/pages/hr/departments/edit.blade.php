@@ -16,14 +16,14 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"> تعديل المتجر </h3>
+                    <h3 class="card-title"> تعديل القسم </h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('dashboard.stores.update',$store->id) }}" method="POST">
+                    <form action="{{ route('dashboard.hr.departments.update',$department->id) }}" method="POST">
                         @method('PUT')
                         @csrf
-                        @include('dashboard.pages.stores._form')
-                        <button type="submit" class="btn btn-primary">تعديل المتجر</button>
+                        @include('dashboard.pages.hr.departments._form')
+                        <button type="submit" class="btn btn-primary">تعديل القسم</button>
                     </form>
                 </div>
             </div>

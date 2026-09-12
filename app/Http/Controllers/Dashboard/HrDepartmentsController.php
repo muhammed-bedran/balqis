@@ -30,10 +30,16 @@ class HrDepartmentsController extends Controller
             'status' => 'required|in:active,inactive',
         ]);
     }
+    public function show(HrDepartment $department)
+    {
+        return view('dashboard.pages.hr.departments.show',[
+            'department' => $department,
+        ]);
+    }
     public function store(Request $request)
     {
         HrDepartment::create($this->validated($request));
-        return redirect()->route('dashboard.hr.departments.index')->with('success','Department created successfully.');
+        return redirect()->route('dashboard.hr.departments.index')->with('success','تم إضافة القسم بنجاح.');
     }
     public function edit(HrDepartment $department)
     {
@@ -44,11 +50,11 @@ class HrDepartmentsController extends Controller
     public function update(Request $request,HrDepartment $department)
     {
         $department->update($this->validated($request));
-        return redirect()->route('dashboard.hr.departments.index')->with('success','Department updated successfully.');
+        return redirect()->route('dashboard.hr.departments.index')->with('success','تم تحديث القسم بنجاح.');
     }
     public function destroy(HrDepartment $department)
     {
         $department->delete();
-        return redirect()->route('dashboard.hr.departments.index')->with('success','Department deleted successfully.');
+        return redirect()->route('dashboard.hr.departments.index')->with('success','تم حذف القسم بنجاح.');
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\HrController;
 use App\Http\Controllers\Dashboard\HrDepartmentsController;
+use App\Http\Controllers\Dashboard\HrEmployeesController;
 use App\Http\Controllers\Dashboard\StoreController;
 use App\Http\Controllers\Dashboard\ProductsController;
 
@@ -44,7 +45,7 @@ Route::group([
          Route::get('/',[HrController::class,'index'])->name('index'); // dashboard.hr.index
 
             Route::resource('departments',HrDepartmentsController::class); // dashboard.hr.departments.index
-
+            Route::resource('employees',HrEmployeesController::class); // dashboard.hr.employees.index
 
 
     });

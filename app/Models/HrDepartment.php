@@ -12,4 +12,8 @@ class HrDepartment extends Model
         'description',
         'status'
     ];
+    public function employees()
+    {
+        return $this->hasMany(HrEmployee::class);
+    }
 }
