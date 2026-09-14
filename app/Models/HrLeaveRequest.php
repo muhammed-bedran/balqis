@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class HrLeaveRequest extends Model
 {
@@ -21,5 +22,11 @@ class HrLeaveRequest extends Model
     public function employee()
     {
         return $this->belongsTo(HrEmployee::class);
+    }
+    public static function calculateDays(string $startDate, string $endDate)
+    {
+        $start = Carbon::parse($startDate)->startOfDay();
+        $end = Carbon::parse($endDate)->startOfDay();
+        return (int) $start->diffInDays($end) + 1;
     }
 }

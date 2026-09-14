@@ -46,16 +46,16 @@ Route::group([
 
             Route::resource('departments',HrDepartmentsController::class); // dashboard.hr.departments.index
             Route::resource('employees',HrEmployeesController::class); // dashboard.hr.employees.index
-
-
+            Route::resource('leaves',\App\Http\Controllers\Dashboard\HrLeaveRequestController::class)
+            ->parameters(['leaves' => 'leave']); // dashboard.hr.leaves.index
+            Route::post('leaves/{leave}/approve',[\App\Http\Controllers\Dashboard\HrLeaveRequestController::class,'approve'])->name('leaves.approve');
+            Route::post('leaves/{leave}/reject',[\App\Http\Controllers\Dashboard\HrLeaveRequestController::class,'reject'])->name('leaves.reject');
+            Route::resource('bonuses',\App\Http\Controllers\Dashboard\Hr\HrBonusesController::class); // dashboard.hr.bonuses.index
     });
 
 
 
 });
-
-
-
 
 
 
