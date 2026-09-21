@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hr_bonuses', function (Blueprint $table) {
+        Schema::create('hr_deducations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('hr_employees')->cascadeOnDelete();
             $table->string('title');
-            $table->enum('type',['preformance','overtime','holiday','commission','other'])->default('other');
+            $table->enum('type',['late','absence','loan','penalty','tax','other'])->default('other');
             $table->decimal('amount', 10, 2);
-            $table->date('date');  // 2026-09-14 
+            $table->date('date');
             $table->text('notes')->nullable();
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hr_bonuses');
+        Schema::dropIfExists('hr_deducations');
     }
 };

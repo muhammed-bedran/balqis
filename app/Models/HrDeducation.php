@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Termwind\Components\Hr;
 
-class HrBonus extends Model
+class HrDeducation extends Model
 {
     //
+    protected $table = 'hr_deducations';
     protected $fillable = [
         'employee_id',
         'title',

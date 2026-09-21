@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.index')
 
-@section('title', 'الموارد البشرية - إضافة طلب إجازة جديد')
+@section('title', 'الموارد البشرية -    إضافة طلب مكافأة جديد')
 @section('content')
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -16,13 +16,13 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">إضافة طلب إجازة جديد</h3>
+                    <h3 class="card-title">إضافة طلب مكافأة جديد</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('dashboard.hr.leaves.store') }}" method="POST">
+                    <form action="{{ route('dashboard.hr.bonuses.store') }}" method="POST">
                         @csrf
-                        @include('dashboard.pages.hr.leaves._form')
-                        <button type="submit" class="btn btn-primary">حفظ طلب الإجازة</button>
+                        @include('dashboard.pages.hr.bonuses._form')
+                        <button type="submit" class="btn btn-primary">حفظ طلب المكافآت</button>
                     </form>
                 </div>
             </div>

@@ -16,14 +16,14 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title"> تعديل طلب الإجازة </h3>
+                    <h3 class="card-title"> تعديل طلب المكافآت </h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('dashboard.hr.leaves.update',$leave) }}" method="POST">
+                    <form action="{{ route('dashboard.hr.bonuses.update',$bonus) }}" method="POST">
                         @method('PUT')
                         @csrf
-                        @include('dashboard.pages.hr.leaves._form')
-                        <button type="submit" class="btn btn-primary">تعديل طلب الإجازة</button>
+                        @include('dashboard.pages.hr.bonuses._form')
+                        <button type="submit" class="btn btn-primary">تعديل طلب المكافآت</button>
                     </form>
                 </div>
             </div>
