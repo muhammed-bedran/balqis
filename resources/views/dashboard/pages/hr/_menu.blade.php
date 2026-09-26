@@ -9,4 +9,5 @@ $current = $current ?? '';
     <a href="{{ route('dashboard.hr.leaves.index') }}" class="btn {{ $current === 'leaves' ? 'btn-primary' : 'btn-outline-primary' }}"> طلبات الإجازة</a>
     <a href="{{ route('dashboard.hr.bonuses.index') }}" class="btn {{ $current === 'bonuses' ? 'btn-primary' : 'btn-outline-primary' }}"> مكافآت الموظفين</a>
     <a href="{{ route('dashboard.hr.deducations.index') }}" class="btn {{ $current === 'deducations' ? 'btn-primary' : 'btn-outline-primary' }}"> خصومات الموظفين</a>
+    <a href="{{ route('dashboard.hr.payrolls.index') }}" class="btn {{ $current === 'payrolls' ? 'btn-primary' : 'btn-outline-primary' }}"> رواتب الموظفين</a>
 </div>

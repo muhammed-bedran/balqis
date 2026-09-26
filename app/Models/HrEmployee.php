@@ -22,14 +22,14 @@ class HrEmployee extends Model
     ];
     public function department()
     {
-        return $this->belongsTo(HrDepartment::class);
+        return $this->belongsTo(HrDepartment::class, 'department_id');
     }
     public function bonuses()
     {
-        return $this->hasMany(HrBonus::class);
+        return $this->hasMany(HrBonus::class, 'employee_id');
     }
     public function deductions()
     {
-        return $this->hasMany(HrDeducation::class);
+        return $this->hasMany(HrDeducation::class, 'employee_id');
     }
 }

@@ -13,18 +13,34 @@ class HrPayroll extends Model
         'employee_id',
         'year',
         'month',
-        'basic_salary',
+        'base_salary',
         'bonuses_total',
         'deductions_total',
         'net_salary',
         'status',
         'paid_at',
-        'notes',
+      
     ];
     public function employee()
     {
-        return $this->belongsTo(HrEmployee::class);
+        return $this->belongsTo(HrEmployee::class, 'employee_id');
     }
+
+    public function period()
+    {
+        //return $this->year . '-' . $this->month;
+        return sprintf('%04d-%02d',$this->year, $this->month);
+
+    }     
+    
+    // 2026-9
+
+    public function isPaid()
+    {
+        return $this->status === 'paid';
+    }
+
+
     public static function totalsFor(HrEmployee $employee, int $year, int $month)
     {
         $bonuses = $employee->bonuses()
@@ -37,7 +53,13 @@ class HrPayroll extends Model
             ->whereMonth('date', $month)
             ->sum('amount');
         
-        $base = (float) ($employee->basic_salary ?? 0);
+        $base = (float) ($employee->salary ?? 0);
+        return [
+            'base_salary' => $base,
+            'bonuses_total' => $bonuses,
+            'deductions_total' => $deductions,
+            'net_salary' => $base + $bonuses - $deductions
+        ];
     }
 
 }

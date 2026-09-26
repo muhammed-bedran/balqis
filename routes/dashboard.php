@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\Hr\HrPayrollsController;
 use App\Http\Controllers\Dashboard\TwoFactorAuthenticatableController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\DashboardController;
@@ -53,6 +54,7 @@ Route::group([
             Route::post('leaves/{leave}/reject',[\App\Http\Controllers\Dashboard\HrLeaveRequestController::class,'reject'])->name('leaves.reject');
             Route::resource('bonuses',\App\Http\Controllers\Dashboard\Hr\HrBonusesController::class); // dashboard.hr.bonuses.index
             Route::resource('deducations', HrDeducationController::class); // dashboard.hr.deducations.index
+            Route::resource('payrolls',HrPayrollsController::class); // dashboard.hr.payrolls.index
     });
 
 

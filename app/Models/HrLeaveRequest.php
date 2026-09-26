@@ -21,7 +21,7 @@ class HrLeaveRequest extends Model
     ];
     public function employee()
     {
-        return $this->belongsTo(HrEmployee::class);
+        return $this->belongsTo(HrEmployee::class, 'employee_id');
     }
     public static function calculateDays(string $startDate, string $endDate)
     {
