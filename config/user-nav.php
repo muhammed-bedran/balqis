@@ -11,6 +11,17 @@ return [
         'title' => 'التحقق بخطوتين',
         'icon' => 'nav-icon fas fa-lock',
         'route' => 'user.2fa',
+    ],
+    [
+        'title'=>'متجري الإلكتروني',
+        'icon'=>'nav-icon fas fa-store',
+        'route'=> 'user.store.edit',
+    ],
+    [
+        
+        'title'=>'المنتجات',
+        'icon'=>'nav-icon fas fa-box',
+        'route'=> 'user.products.index',
     ]
   
 
