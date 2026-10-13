@@ -3,6 +3,7 @@
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\User\StoreController;
+use App\Http\Controllers\User\TeamController;
 use App\Http\Controllers\User\TwoFactorAuthenticationController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,19 @@ Route::group([
         Route::put('/store',[StoreController::class,'update'])->name('store.update');
 
         Route::resource('products',ProductController::class);
+
+        Route::get('/teams',[TeamController::class,'index'])->name('teams.index');
+        Route::get('/teams/create',[TeamController::class,'create'])->name('teams.create');
+        Route::post('/teams',[TeamController::class,'store'])->name('teams.store');
+        Route::get('/teams/{member}/edit',[TeamController::class,'edit'])->name('teams.edit');
+        Route::put('/teams/{member}',[TeamController::class,'update'])->name('teams.update');
+        Route::delete('/teams/{member}',[TeamController::class,'destroy'])->name('teams.destroy');
+        Route::get('/teams/{member}',[TeamController::class,'show'])->name('teams.show');
+        // Teams Routes
+
+
+
+
     });
 
 

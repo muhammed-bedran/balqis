@@ -19,7 +19,28 @@
             <div class="perk"><b>↩️ إرجاع سهل</b><span>خلال 14 يومًا</span></div>
         </div>
         <h2>الأكثر مبيعًا</h2>
-        <div class="grid" id="featured"></div>
+        <div class="grid">
+            @forelse ($products->take(6) as $product)
+                @include('front.products.products-card',['product'=>$product])
+            @empty
+                <p>لا يوجد منتجات</p>
+            @endforelse
+        </div>
+
+    </section>
+    <section id="products" class="page on">
+        <div class="filters" id="filters">
+            @foreach ($categories as $category )
+                <button data-id="{{ $category->id }}">{{ $category->name }}</button>
+            @endforeach
+        </div>
+        <div class="grid" id="list">
+             @forelse ($products as $product)
+                @include('front.products.products-card',['product'=>$product])
+             @empty
+                <p>لا يوجد منتجات</p>
+             @endforelse
+        </div>
     </section>
 
 @endsection

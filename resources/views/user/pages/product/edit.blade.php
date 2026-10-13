@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.index')
+@extends('layouts.dashboard.user')
 
 
 @section('content')
@@ -19,7 +19,7 @@
                     <h3 class="card-title"> تعديل المنتج </h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('user.products.update',$product->id) }}" method="POST">
+                    <form action="{{ route('user.products.update', $product->id) }}" method="POST">
                         @method('PUT')
                         @csrf
                         @include('user.pages.product._form')

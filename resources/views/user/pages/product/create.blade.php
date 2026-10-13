@@ -1,5 +1,4 @@
-@extends('layouts.dashboard.index')
-
+@extends('layouts.dashboard.user')
 
 @section('content')
 @if ($errors->any())

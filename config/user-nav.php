@@ -22,6 +22,11 @@ return [
         'title'=>'المنتجات',
         'icon'=>'nav-icon fas fa-box',
         'route'=> 'user.products.index',
+    ],
+    [
+        'title'=>'الفريق',
+        'icon'=>'nav-icon fas fa-users',
+        'route'=> 'user.teams.index',
     ]
   
 
