@@ -4,7 +4,10 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
+use Melbedran\RolePermession\Support\AbilityManager;
+
 
 class Nav extends Component
 {
@@ -12,10 +15,14 @@ class Nav extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(AbilityManager $abilities)
     {
+        $user = Auth::guard('admin')->user();
         //
-        $this->items = config('nav',[]);
+        $this->items = $abilities->filterNav(
+            config('nav',[]),
+            $user
+        );
     }
 
     /**
@@ -23,6 +30,8 @@ class Nav extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.nav');
+        return view('components.nav',[
+            'items' => $this->items
+        ]);
     }
 }

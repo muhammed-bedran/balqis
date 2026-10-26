@@ -81,6 +81,7 @@
                 <i class="fas fa-list-alt ml-2"></i>
                 قائمة الفئات
             </h3>
+            @canAbility('category.create')
             <div class="card-tools">
                 <a href="{{ route('dashboard.categories.create') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus ml-1"></i> إضافة فئة جديدة
@@ -90,6 +91,7 @@
                 </button> --}}
 
             </div>
+            @endcanAbility
         </div>
         <div class="card-body">
             <div class="table-responsive table-responsive-custom">
@@ -120,15 +122,22 @@
                             <td>{{ $category->created_at?->format('Y-m-d') }}</td>
                             <td class="col-actions">
                                 <div class="action-btn-group">
+                                    @canAbility('category.show')
                                     <a href="{{ route('dashboard.categories.show', $category->id) }}" class="btn btn-info btn-action" title="عرض">
                                         <i class="fas fa-eye"></i>
                                     </a>
+                                    @endcanAbility
+                                    @canAbility('category.update')
                                     <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn btn-warning btn-action" title="تعديل">
                                         <i class="fas fa-edit"></i>
                                     </a>
+                                    @endcanAbility
+                                    @canAbility('category.products')
                                     <a href="{{ route('dashboard.categories.products', $category->id) }}" class="btn btn-brown btn-action" title="المنتجات">
                                         <i class="fas fa-box"></i>
                                     </a>
+                                    @endcanAbility
+                                    @canAbility('category.delete')
                                     <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post">
                                         @csrf
                                         @method('delete')
@@ -136,6 +145,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
+                                    @endcanAbility
                                 </div>
                             </td>
                         </tr>

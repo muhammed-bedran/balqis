@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\HrDepartmentsController;
 use App\Http\Controllers\Dashboard\HrEmployeesController;
 use App\Http\Controllers\Dashboard\StoreController;
 use App\Http\Controllers\Dashboard\ProductsController;
+use App\Models\Category;
 
 Route::group([
     'prefix' => '/admin/dashboard',
@@ -69,3 +70,5 @@ Route::group([
 
                                                   //layouts . dashboard . index
         //dashboard.pages.index                     // yield('content')
+
+

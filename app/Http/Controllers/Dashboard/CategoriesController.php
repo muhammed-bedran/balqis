@@ -77,6 +77,7 @@ class CategoriesController extends Controller
     }
     public function show($id)
     {
+        Gate::authorize('category.view');
         $category = Category::findOrFail($id);
         return view('dashboard.pages.categories.show', compact('category'));
     }
@@ -90,6 +91,7 @@ class CategoriesController extends Controller
         ->with('success', 'تم الحذف بنجاح.');
     }
     public function products(Category $category){
+        Gate::authorize('category.products');
         return view('dashboard.pages.categories.products',[
             'category' => $category,
             'products' => $category->products()->with('store')->paginate(10),

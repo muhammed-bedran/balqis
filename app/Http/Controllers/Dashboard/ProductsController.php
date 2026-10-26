@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Store;
+use Illuminate\Support\Facades\Gate;
 
 class ProductsController extends Controller
 {
     //
     public function index(){
-
+    Gate::authorize('product.view');
         $request = request();
         $query = Product::query()->with(['store','category']);
         $name = $request->query('name');
@@ -38,6 +39,7 @@ class ProductsController extends Controller
         ]);
     }
     public function create(){
+        Gate::authorize('product.create');
         return view('dashboard.pages.products.create',[
             'product' => new Product(),
             'categories' => Category::pluck('name','id'),
@@ -45,6 +47,7 @@ class ProductsController extends Controller
         ]);
     }
     public function store(Request $request){
+        Gate::authorize('product.create');
         $request->validate([
             'name' => ['required','max:100'],
             'status' => ['required','in:active,inactive'],
@@ -58,6 +61,7 @@ class ProductsController extends Controller
         ->with('success', 'تمت الاضافة بنجاح  .');
     }
     public function edit(Product $product){
+        Gate::authorize('product.update');
         return view('dashboard.pages.products.edit',[
             'product' => $product,
             'categories' => Category::pluck('name','id'),
@@ -65,6 +69,7 @@ class ProductsController extends Controller
         ]);
     }
     public function update(Request $request,Product $product){
+        Gate::authorize('product.update');
         $request->validate([
             'name' => ['required','max:100'],
             'status' => ['required','in:active,inactive'],
@@ -78,6 +83,7 @@ class ProductsController extends Controller
         ->with('success', 'تم التعديل بنجاح  .');
     }
     public function destroy(Product $product){
+        Gate::authorize('product.delete');
         $product->delete();
         return redirect()->route('dashboard.products.index')
         ->with('success', 'تم الحذف بنجاح  .');

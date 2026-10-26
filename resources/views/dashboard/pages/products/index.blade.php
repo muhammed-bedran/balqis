@@ -99,6 +99,7 @@
                 <i class="fas fa-list-alt ml-2"></i>
                 قائمة المنتجات
             </h3>
+            @canAbility('product.create')
             <div class="card-tools">
                 <a href="{{ route('dashboard.products.create') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus ml-1"></i> إضافة منتج جديدة
@@ -108,6 +109,7 @@
                 </button> --}}
 
             </div>
+            @endcanAbility
         </div>
         <div class="card-body">
             <div class="table-responsive table-responsive-custom">
@@ -140,12 +142,15 @@
                             <td>{{ $product->created_at?->format('Y-m-d') }}</td>
                             <td class="col-actions">
                                 <div class="action-btn-group">
-                                    <a href="{{ route('dashboard.products.show', $product->id) }}" class="btn btn-info btn-action" title="عرض">
+                                    {{-- <a href="{{ route('dashboard.products.show', $product->id) }}" class="btn btn-info btn-action" title="عرض">
                                         <i class="fas fa-eye"></i>
-                                    </a>
+                                    </a> --}}
+                                    @canAbility('product.update')
                                     <a href="{{ route('dashboard.products.edit', $product->id) }}" class="btn btn-warning btn-action" title="تعديل">
                                         <i class="fas fa-edit"></i>
                                     </a>
+                                    @endcanAbility
+                                    @canAbility('product.delete')
                                     <form action="{{ route('dashboard.products.destroy', $product->id) }}" method="post">
                                         @csrf
                                         @method('delete')
@@ -153,6 +158,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
+                                    @endcanAbility
                                 </div>
                             </td>
                         </tr>

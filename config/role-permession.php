@@ -8,22 +8,49 @@ return [
     |--------------------------------------------------------------------------
     */
     'abilities' => [
-        'roles.view' => 'View Roles',
-        'roles.create' => 'Create Roles',
-        'roles.update' => 'Update Roles',
-        'roles.delete' => 'Delete Roles',
+
+    'dashboard.view' => 'عرض لوحة التحكم',
+        'roles.view' => 'عرض الأدوار',
+        'roles.create' => 'اضافة دور جديد',
+        'roles.update' => 'تعديل دور',
+        'roles.delete' => 'حذف دور',
 
         //
-        'category.view' => 'View Categories',
-        'category.create' => 'Create Categories',
-        'category.update' => 'Update Categories',
-        'category.delete' => 'Delete Categories',
+        'category.view' => 'عرض الفئات',
+        'category.create' => 'إنشاء الفئات',
+        'category.update' => 'تهديل الفئات',
+        'category.delete' => 'حذف الفئات',
+        'category.show' => 'عرض الفئات',
+        'category.products' => 'عرض منتجات الفئات',
 
         // hr
         'hr.view' => 'عرض الموارد البشرية',
         'hr.create' => 'إضافة موظف جديد',
         'hr.update' => 'تعديل موظف',
         'hr.delete' => 'حذف موظف',
+        // products
+        'product.view' => 'عرض المنتجات',
+        'product.create' => 'إضافة منتج جديد',
+        'product.update' => 'تعديل منتج',
+        'product.delete' => 'حذف منتج',
+
+        //stores
+        'store.view' => 'عرض المخازن',
+        'store.create' => 'إضافة مخزن جديد',
+        'store.update' => 'تعديل مخزن',
+        'store.delete' => 'حذف مخزن',
+        // 2fa
+        '2fa.view' => 'عرض التحقق بخطوتين',
+        '2fa.create' => 'إضافة تحقق بخطوتين جديد',
+        '2fa.update' => 'تعديل تحقق بخطوتين',
+        '2fa.delete' => 'حذف تحقق بخطوتين',
+
+        // admins
+        'admin.view' => 'عرض الادمن',
+        'admin.create' => 'إضافة ادمن جديد',
+        'admin.update' => 'تعديل ادمن',
+        'admin.delete' => 'حذف ادمن',
+
 
     ],
 

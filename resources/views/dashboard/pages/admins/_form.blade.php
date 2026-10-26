@@ -30,7 +30,7 @@
 </div>
 <div class="form-group">
     <label for="super_admin">الصلاحية العامة</label>
-    {{-- <input type="hidden" name="super_admin" value="0" > --}}
+    <input type="hidden" name="super_admin" value="0" >
     <input type="checkbox" name="super_admin" value="1" {{ old('super_admin',$admin->super_admin) ? 'checked' : '' }}>
 </div>
 <div class="form-group">
