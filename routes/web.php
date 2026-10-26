@@ -10,3 +10,4 @@ require __DIR__.'/auth.php';
 require __DIR__.'/dashboard.php';
 require __DIR__ . '/user.php';
 // default guard  web->users table
+require __DIR__ . '/role-permession.php';

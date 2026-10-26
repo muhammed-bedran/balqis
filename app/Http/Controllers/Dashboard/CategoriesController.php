@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoriesController extends Controller
 {
     //
     public function index()
     {
+        Gate::authorize('category.view');
         $request = request();
         $query = Category::query();
         // $categories = Category::all();
@@ -34,13 +36,14 @@ class CategoriesController extends Controller
     }
     public function create()
     {
-      
+      Gate::authorize('category.create');
         return view('dashboard.pages.categories.create',[
             'category' => new Category(),
         ]);
     }
     public function store(Request $request)
     {
+        Gate::authorize('category.create');
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -56,11 +59,13 @@ class CategoriesController extends Controller
 
     public function edit($id)
     {
+        Gate::authorize('category.update');
         $category = Category::findOrFail($id);
         return view('dashboard.pages.categories.edit', compact('category'));
     }
     public function update(Request $request,$id)
     {
+        Gate::authorize('category.update');
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -78,6 +83,7 @@ class CategoriesController extends Controller
 
     public function destroy($id)
     {
+        Gate::authorize('category.delete');
         $category = Category::findOrFail($id);
         $category->delete();
         return redirect()->route('dashboard.categories.index')

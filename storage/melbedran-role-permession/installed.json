@@ -1,0 +1,13 @@
+{
+    "package": "melbedran/role-permession",
+    "name": "Melbedran-Role-permession",
+    "installed_at": "2026-10-19T17:21:02+00:00",
+    "published": {
+        "config": "C:\\b-28\\balqis\\config\\role-permession.php",
+        "routes": "C:\\b-28\\balqis\\routes/role-permession.php",
+        "controllers": "C:\\b-28\\balqis\\app\\Http/Controllers/RolePermession",
+        "js": "C:\\b-28\\balqis\\resources\\js/vendor/melbedran-role-permession",
+        "views": "C:\\b-28\\balqis\\resources\\views/vendor/role-permession",
+        "migrations_tag": "role-permession-migrations"
+    }
+}

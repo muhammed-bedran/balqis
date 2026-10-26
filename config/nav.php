@@ -32,5 +32,15 @@ return [
         'icon'=>'nav-icon fas fa-users',
         'route'=> 'dashboard.hr.index',
     ],
+    [
+        'title'=>'  الموظفين',
+        'icon'=>'nav-icon fas fa-users',
+        'route'=> 'dashboard.admins.index',
+    ],
+    [
+        'title'=>'الأدوار والصلاحيات',
+        'icon'=>'nav-icon fas fa-user-shield',
+        'route'=> 'role-permession.roles.index',
+    ]
 
 ];

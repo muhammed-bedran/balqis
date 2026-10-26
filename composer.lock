@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4159e54bde020c7eb19dc77b45e98356",
+    "content-hash": "1868c16cc0c7993b3516341e69128825",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2370,6 +2370,72 @@
                 }
             ],
             "time": "2026-03-08T20:05:35+00:00"
+        },
+        {
+            "name": "melbedran/role-permession",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/muhammed-bedran/Melbedran-Role-permession.git",
+                "reference": "832ebca194caba074435912caaee88d383e34119"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/muhammed-bedran/Melbedran-Role-permession/zipball/832ebca194caba074435912caaee88d383e34119",
+                "reference": "832ebca194caba074435912caaee88d383e34119",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "^11.0|^12.0",
+                "illuminate/console": "^11.0|^12.0",
+                "illuminate/database": "^11.0|^12.0",
+                "illuminate/http": "^11.0|^12.0",
+                "illuminate/support": "^11.0|^12.0",
+                "illuminate/view": "^11.0|^12.0",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Melbedran\\RolePermession\\RolePermessionServiceProvider"
+                    ],
+                    "aliases": {
+                        "RolePermession": "Melbedran\\RolePermession\\Facades\\RolePermession"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Melbedran\\RolePermession\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Melbedran"
+                }
+            ],
+            "description": "Reusable Laravel roles & abilities (Gates, Blade, Vue/Inertia) with install/uninstall commands.",
+            "homepage": "https://github.com/muhammed-bedran/Melbedran-Role-permession",
+            "keywords": [
+                "abilities",
+                "blade",
+                "inertia",
+                "laravel",
+                "melbedran",
+                "permissions",
+                "rbac",
+                "roles",
+                "vue"
+            ],
+            "support": {
+                "issues": "https://github.com/muhammed-bedran/Melbedran-Role-permession/issues",
+                "source": "https://github.com/muhammed-bedran/Melbedran-Role-permession"
+            },
+            "time": "2026-07-23T14:43:28+00:00"
         },
         {
             "name": "monolog/monolog",

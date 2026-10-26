@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AdminsController;
 use App\Http\Controllers\Dashboard\Hr\HrPayrollsController;
 use App\Http\Controllers\Dashboard\TwoFactorAuthenticatableController;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,7 @@ Route::group([
     'as' => 'dashboard.',
     'middleware' => ['auth:admin']
 ], function () {
-
+    Route::resource('admins', AdminsController::class); // dashboard.admins.index  Route::resource('admins', AdminsController:class);
     Route::get('/index', [DashboardController::class, 'index'])
         ->name('index');
     // Categories Controller
